@@ -36,3 +36,25 @@ ul.header li a {
 .active {
   background-color: #0099FF;
 }
+h1 {
+    margin: 0;
+    background: #fff;
+    line-height: 1;
+}
+.items {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;    
+}
+.items_line1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.items_line2 {
+    justify-content: center;
+}
+.items_line3 {
+    display: flex;
+    justify-content: center;
+}
