@@ -1,14 +1,24 @@
-export const CHANGE = 'CHANGE';
-export const SUBMIT = 'SUBMIT';
+export const CHANGE_NAME = 'CHANE_NAME';
+export const CHANGE_DEPART = 'CHANGE_DEPART';
+export const CHANGE_ARRIVE = 'CHANGE_ARRIVE';
 
-export function change() {
+export function changeName(value) {
     return {
-        type: CHANGE
+        type: CHANGE_NAME,
+        place: value
     }
 }
 
-export function submit() {
+export function changeDepart(value) {
     return {
-        type: SUBMIT
+        type: CHANGE_DEPART,
+        depart: value
+    }
+}
+
+export function changeArrive(value) {
+    return {
+        type: CHANGE_ARRIVE,
+        arrive: value
     }
 }

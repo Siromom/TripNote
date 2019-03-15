@@ -1,18 +1,47 @@
 import React, { Component } from 'react';
-import { Alert } from 'reactstrap';
+import { connect } from 'react-redux';
 
-import Header from "../components/Header";
+import { Alert } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import BugetItems from '../containers/BugetItems';
 
 class Buget extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
+    
+    this.state = {
+      items: []
+    };
+
+    this.addItem = this.addItem.bind(this);
+  }
+
+  addItem(e) {
+    if(this._inputElement.value !== "") {
+      const newItem = {
+        text: this._inputElement.value,
+        key: Date.now()
+      };
+
+      this.setState((prevState) => {
+        return {
+          itmes: prevState.items.concat(newItem)
+        };
+      });
+    }
+
+    this._inputElement.value = "";
+
+    console.log(this.state.items);
+
+    e.preventDefault();
   }
 
   render() {
     return (
       <div>
-        <Header />
-        <h1>{this.props.name} 의 예산 계획</h1>
+        <h1>{this.props.place} 예산 계획</h1>
         <div className="items">
           <div className="items_line1">
             <Alert color="primary">
@@ -23,13 +52,34 @@ class Buget extends Component {
             </Alert>
           </div>
         
-          <div className="bugetList">
-            예산 리스트
+          <div className="bugets">
+            <h1>예산 입력</h1>
+            <section className="form-wrapper">
+              <form onSubmit={this.addItem}>
+                <input ref={(a) => this._inputElement = a} 
+                  placeholder="금액">
+                </input>
+                <button type="submit">추가</button> 
+              </form> 
+            </section>
+            <section className="todos-wrapper">
+              <BugetItems />
+            </section>
           </div>
         </div>
       </div>
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    place: state.plans.place,
+    depart: state.plans.depart,
+    arrive: state.plans.arrive
+  }
+}
+
+Buget = connect(mapStateToProps)(Buget);
 
 export default Buget;

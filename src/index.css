@@ -36,11 +36,6 @@ ul.header li a {
 .active {
   background-color: #0099FF;
 }
-h1 {
-    margin: 0;
-    background: #fff;
-    line-height: 1;
-}
 .items {
     display: flex;
     flex-direction: column;
@@ -57,4 +52,25 @@ h1 {
 .items_line3 {
     display: flex;
     justify-content: center;
+}
+
+.bugets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffe066;
+  width: 512px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); /* 그림자 */ 
+  margin: 0 auto; /* 페이지 중앙 정렬 */
+  margin-top: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+.form-wrapper {
+  padding: 1rem;
+  background-color: #FFF;
+}
+
+.todos-wrapper {
+  min-height: 5rem;
 }
