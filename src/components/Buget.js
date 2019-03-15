@@ -4,11 +4,15 @@ import { Alert } from 'reactstrap';
 import Header from "../components/Header";
 
 class Buget extends Component {
+  constructor (props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <h1>예산 설정</h1>
+        <h1>{this.props.name} 의 예산 계획</h1>
         <div className="items">
           <div className="items_line1">
             <Alert color="primary">

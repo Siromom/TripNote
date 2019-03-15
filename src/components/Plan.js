@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
-import { Form, FormGroup, Label, FormText } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input, FormGroup, Label } from 'reactstrap';
 
 import Header from "../components/Header";
 
 class Plan extends Component {
-  makePlan() {
-    window.location.hash = '#/buget';
+  constructor (props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-    
+  
+  handleChange = (e) => {
+    this.props.handleChange();
+  }
+  handleSubmit = (e) => {
+    this.props.handleSubmit();
+  }
+  
   render() {
     return (
       <div>
@@ -19,7 +27,11 @@ class Plan extends Component {
           <div className="items_line1">
             <InputGroup size="lg">
               <InputGroupAddon addonType="prepend">여행장소</InputGroupAddon>
-              <Input placeholder="여행장소를 입력해주세요" />
+              <Input 
+                placeholder="여행장소를 입력해주세요" 
+                onChange={this.props.handleChange}
+                name="name"
+              />
             </InputGroup>
           </div>
           
@@ -28,23 +40,31 @@ class Plan extends Component {
               <Label for="exampleDate" >출발 시간</Label>
               <Input
                 type="date"
-                name="date"
+                name="depart"
                 id="departDate"
                 placeholder="date placeholder"
+                onChange={this.props.handleChange}
               />
         
               <Label for="exampleDate">도착 시간</Label>
               <Input
                 type="date"
-                name="date"
+                name="arrive"
                 id="arriveDate"
                 placeholder="date placeholder"
+                onChange={this.props.handleChange}
               />
             </FormGroup>
           </div>
           
           <div className="items_line3">
-            <Button outline color="success" size="lg" active onClick={this.makePlan}>일정 만들기</Button>
+            <Button 
+              outline color="success" 
+              size="lg" 
+              active onClick= {this.props.handleSubmit}
+            >
+            일정 만들기
+            </Button>
           </div>
         </div>
       </div>
