@@ -59,7 +59,7 @@ ul.header li a {
   flex-direction: column;
   justify-content: center;
   background-color: #ffe066;
-  width: 512px;
+  width: auto;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); /* 그림자 */ 
   margin: 0 auto; /* 페이지 중앙 정렬 */
   margin-top: 4rem;
@@ -68,9 +68,36 @@ ul.header li a {
 }
 .form-wrapper {
   padding: 1rem;
-  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+}
+.items-wrapper {
+  min-height: 5rem;
+}
+.bugetInput {
+  display: flex;
+  flex: 2;
+  max-height: 3rem;
+}
+.plusBtn {
+  width: 15%;
+  max-height: 3rem;
 }
 
-.todos-wrapper {
-  min-height: 5rem;
+.theList {
+  list-style: none;
+  padding-left: 0;
+  width: auto;
+} 
+.theList li {
+  color: #333;
+  background-color: rgba(255,255,255,.5);
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  list-style: none;
+}
+ul.theList {
+  margin: 10px;
+  padding: 0;
 }

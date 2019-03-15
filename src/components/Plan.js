@@ -39,7 +39,6 @@ class Plan extends Component {
   sumbitPage() {
     if(this.props.place === '' || this.props.depart === '' || this.props.arrive === '') {
       {this.toggle();}
-      console.log('알람');
     }
     else {
       window.location.hash = '#/buget';

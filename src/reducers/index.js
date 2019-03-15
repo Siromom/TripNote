@@ -23,8 +23,10 @@ function plans(state = planIntialState, action) {
             });
         default:
             return state;
+        
     }
 }
+
 
 const tripApp = combineReducers({
     plans
