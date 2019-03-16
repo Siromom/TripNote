@@ -97,7 +97,33 @@ ul.header li a {
   border-radius: 5px;
   list-style: none;
 }
+.theList li:hover {
+  color: #333;
+  background-color: rgba(8, 233, 102, 0.5);
+  -webkit-transition: all 250ms ease-in-out; 
+  transition: all 250ms ease-in-out; 
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  list-style: none;
+}
 ul.theList {
   margin: 10px;
   padding: 0;
+}
+.delete {
+  color: #777;
+  font: 14px/100% arial, sans-serif;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  float: right;
+  width: 20px;
+  height: 20px;
+  border: none;
+}
+.delete:hover {
+  color: #fff; 
+  background-color: crimson;
+  -webkit-transition: all 250ms ease-in-out; 
+  transition: all 250ms ease-in-out; 
 }
