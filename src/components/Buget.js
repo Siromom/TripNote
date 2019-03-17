@@ -19,6 +19,7 @@ class Buget extends Component {
 
   calLeft() {
     const left = this.props.totalBuget - this.props.usedBuget;
+
     this.state.leftBuget = left;
   }
   

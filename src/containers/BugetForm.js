@@ -11,13 +11,17 @@ class BugetForm extends Component {
         super(props);
 
         this.state = {
+            inputContent: '',
             inputBuget: '',
             items: [],
             total: 0,
             modal: false
         };
         this.toggle = this.toggle.bind(this);
-                
+        
+        this.handleChange = this.handleChange.bind(this);
+        this.handleContentChange = this.handleContentChange.bind(this);
+
         this.addItem = this.addItem.bind(this);       
         this.delItem = this.delItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
@@ -38,18 +42,27 @@ class BugetForm extends Component {
           inputBuget: e.target.value
         })
     }
+
+    handleContentChange = (e) => {
+      this.setState({
+        inputContent: e.target.value
+      })
+  }
     
     addItem(e) {
         const input = parseInt(this.state.inputBuget);
 
-        if (isNaN(input) === false) {
+        if (isNaN(input) === false && this.state.inputContent !== '') {
           const newItem = {
+            name: this.state.inputContent,
             number: parseInt(this.state.inputBuget),
-            key: Date.now()
+            key: Date.now(),
+            checked: false
           };
           this.setState((prevState) => {
             return { 
               items: prevState.items.concat(newItem),
+              inputContent: '',
               inputBuget: '' 
             };
           });
@@ -74,6 +87,7 @@ class BugetForm extends Component {
         this.setState({
             items: filteredItems
         });
+
         this.handleTotalMinus(parseInt(unfilteredItems[0].number));
     }
 
@@ -87,24 +101,34 @@ class BugetForm extends Component {
 
     handleUsed(key) {
         const unfilteredItems = this.state.items.filter(function (item) {
+            
             return (item.key === key);
         });
 
+        unfilteredItems[0].checked = true;
+
         this.props.handleUsed(parseInt(unfilteredItems[0].number));    
-        
-        console.log('스타일 바꾸기!!! ');
     }
 
     createTasks(item) {
-        return <li className="unclicked"
-                    key={item.key} 
-                    onClick={() => {this.handleUsed(item.key)}}>
-                    {item.number}
-                    <button className="delete" 
-                            onClick={() => {this.delItem(item.key)}}>
-                        x    
-                    </button>
-                </li>
+      if(item.checked === false) {
+        return <li className="false" 
+                  key={item.key}
+                  onClick={() => {this.handleUsed(item.key)}}>
+                  {item.name} : {item.number} 원
+                  <button className="delete" 
+                          onClick={() => {this.delItem(item.key)}}>
+                  x    
+                  </button>
+              </li>
+      }
+      else {
+        return <li className="true" 
+                  key={item.key}>
+                  {item.name} : {item.number} 원
+              </li>
+      }
+      
     }
 
     render() {
@@ -114,6 +138,11 @@ class BugetForm extends Component {
             <div>
               <div className="form-wrapper">
                 <InputGroup className="bugetInput" size="lg">
+                  <Input 
+                    value={this.state.inputContent}
+                    onChange={this.handleContentChange}
+                    placeholder="내용" 
+                  />
                   <Input 
                     value={this.state.inputBuget}
                     onChange={this.handleChange}
@@ -137,7 +166,7 @@ class BugetForm extends Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}>경고</ModalHeader>
               <ModalBody>
-                금액을 입력하세요!
+                내용과 금액을 정확히 입력하세요!
               </ModalBody>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggle}>확인</Button>

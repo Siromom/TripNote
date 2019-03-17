@@ -14,11 +14,11 @@ const bugetInitialState = {
 };
 
 const plus = (a, b) => {
-    return a+b;
+    return (a+b);
 };
 
 const minus = (a, b) => {
-    return a-b;
+    return (a-b);
 };
 
 function plans(state = planInitialState, action) {
@@ -45,15 +45,16 @@ function bugets(state = bugetInitialState, action) {
     switch(action.type) {
         case TOTAL:
             return Object.assign({}, state, {
-                totalBuget: plus(state.totalBuget, action.totalBuget)
+                totalBuget: plus(state.totalBuget, action.item)
             });
         case TOTAL_MINUS:
+        console.log(state.totalBuget);
             return Object.assign({}, state, {
-                totalBuget: minus(state.totalBuget, action.totalBuget)
+                totalBuget: minus(state.totalBuget, action.item)
             });
         case USED_TOTAL:
             return Object.assign({}, state, {
-                usedBuget: plus(state.usedBuget, action.usedBuget)
+                usedBuget: plus(state.usedBuget, action.item)
             });    
         default:
             return state;

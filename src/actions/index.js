@@ -30,20 +30,20 @@ export function changeArrive(value) {
 export function addBuget(value) {
     return {
         type: TOTAL,
-        totalBuget: value
+        item: value
     }
 }
 
 export function delBuget(value) {
     return {
         type: TOTAL_MINUS,
-        totalBuget: value
+        item: value
     }
 }
 
 export function addUsed(value) { 
     return {
         type: USED_TOTAL,
-        usedBuget: value
+        item: value
     }
 }
